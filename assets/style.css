@@ -27,10 +27,13 @@
     padding-top: 2rem !important;
 }
 
-[data-testid="stSidebar"] label p {
-    color: #e2e8f0 !important;
+/* Make all labels in the sidebar white/visible */
+[data-testid="stSidebar"] label p, 
+[data-testid="stSidebar"] .stMarkdown p,
+[data-testid="stSidebar"] .stSelectbox label,
+[data-testid="stSidebar"] .stTextInput label {
+    color: #f1f5f9 !important;
     font-weight: 600 !important;
-    font-size: 0.9rem !important;
 }
 
 [data-testid="stSidebar"] .stMarkdown h1 {
@@ -119,18 +122,29 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Fix for 'uploadpload' text overlap */
-/* Suppression of the Streamlit button ::before pseudo-element */
-div[data-testid="stFileUploader"] button div span::before {
-    content: "" !important;
+/* DEFINITIVE FIX for 'uploadpload' text overlap */
+[data-testid="stFileUploader"] button div span::before {
+    display: none !important;
+    content: none !important;
+}
+
+[data-testid="stFileUploader"] section {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+[data-testid="stFileUploader"] section > label {
     display: none !important;
 }
 
-.stFileUploader section {
-    padding: 0 !important;
+/* Brighter warning messages for readability */
+div[data-testid="stAlert"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
-.stFileUploader section > label {
-    display: none !important;
+
+div[data-testid="stAlert"] p {
+    color: #ffffff !important;
 }
 
 .stStatusWidget {
