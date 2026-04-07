@@ -79,11 +79,11 @@ with st.sidebar:
     
     api_key_input = st.text_input(f"Enter {provider} API Key", type="password")
     
-    # Suggested Models based on Provider
+    # Suggested Models based on Provider (Updated for Stability & Capability)
     model_options = {
-        "Google Gemini": ["gemini/gemini-1.5-flash", "gemini/gemini-1.5-pro", "gemini/gemini-1.0-pro"],
+        "Google Gemini": ["gemini/gemini-1.5-flash-latest", "gemini/gemini-1.5-pro-latest", "gemini/gemini-1.5-flash"],
         "OpenAI": ["gpt-4o", "gpt-4-turbo", "gpt-3.5-turbo"],
-        "Anthropic": ["anthropic/claude-3-sonnet-20240229", "anthropic/claude-3-opus-20240229", "anthropic/claude-3-haiku-20240307"],
+        "Anthropic": ["anthropic/claude-3-5-sonnet-20240620", "anthropic/claude-3-opus-20240229", "anthropic/claude-3-haiku-20240307"],
         "Perplexity": ["perplexity/llama-3-sonar-large-32k-online", "perplexity/llama-3-sonar-small-32k-online"]
     }
     
@@ -153,12 +153,14 @@ if question := st.chat_input("Input your query..."):
                 # 2. Build Prompt
                 full_prompt = f"{SYSTEM_PROMPT}\n\nContext:\n{context}\n\nUser Question:\n{question}"
                 
-                # 3. Get Response using LiteLLM
+                # 3. Get Response using LiteLLM (Consistent temperature & full answers)
                 with st.spinner(f"Thinking (via {provider})..."):
                     response = litellm.completion(
                         model=model_choice,
                         messages=[{"role": "user", "content": full_prompt}],
-                        api_key=api_key_input
+                        api_key=api_key_input,
+                        temperature=0.5,
+                        max_tokens=None
                     )
                     
                     answer = response.choices[0].message.content
