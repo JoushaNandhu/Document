@@ -66,17 +66,8 @@ def get_context(uploaded_files):
 
 # --- SIDEBAR CONFIGURATION ---
 with st.sidebar:
-    # Modern Enterprise Logo
-    st.markdown("""
-    <div style='display: flex; align-items: center; gap: 10px; margin-bottom: 25px;'>
-        <div style='width: 32px; height: 32px; background: #0f172a; border-radius: 8px; display: flex; justify-content: center; align-items: center;'>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        </div>
-        <span style='font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: #0f172a;'>NEXUS UI</span>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<p style='font-size: 0.75rem; color: #475569; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;'>System Configuration</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 1.5rem; color: #0f172a; font-weight: 800; margin-bottom: 0;'>Configuration</h2>", unsafe_allow_html=True)
+    st.markdown("---")
 
     # Provider Selection
     provider = st.selectbox(

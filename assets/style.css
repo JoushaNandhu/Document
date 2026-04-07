@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Master Font Settings */
-html, body, p, h1, h2, h3, h4, h5, span, div, label, li, a {
+body, p, h1, h2, h3, h4, h5, label, li, a {
     font-family: 'Inter', sans-serif !important;
-    color: #0f172a !important; /* Deep black/slate text for maximum readability */
+    color: #0f172a !important; 
 }
 
 /* Base App Background - Clean White */
