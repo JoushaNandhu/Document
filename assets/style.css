@@ -138,15 +138,7 @@ html, body, p, h1, h2, h3, h4, h5, span, div:not(.stIcon):not(.material-symbols-
     display: none !important;
 }
 
-/* Brighter warning messages for readability */
-div[data-testid="stAlert"] {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-}
 
-div[data-testid="stAlert"] p {
-    color: #ffffff !important;
-}
 
 .stStatusWidget {
     border-radius: 16px !important;

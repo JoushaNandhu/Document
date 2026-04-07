@@ -82,7 +82,7 @@ with st.sidebar:
     
     # Suggested Models based on Provider (Updated for Stability & Capability)
     model_options = {
-        "Google Gemini": ["gemini/gemini-1.5-flash-001", "gemini/gemini-1.5-pro-001", "gemini/gemini-1.5-pro"],
+        "Google Gemini": ["gemini/gemini-1.5-flash", "gemini/gemini-1.5-pro", "gemini/gemini-pro"],
         "OpenAI": ["gpt-4o", "gpt-4-turbo", "gpt-3.5-turbo"],
         "Anthropic": ["anthropic/claude-3-5-sonnet-20240620", "anthropic/claude-3-opus-20240229", "anthropic/claude-3-haiku-20240307"],
         "Perplexity": ["perplexity/llama-3-sonar-large-32k-online", "perplexity/llama-3-sonar-small-32k-online"]
@@ -164,13 +164,14 @@ if question := st.chat_input("Input your query..."):
                             response = model.generate_content(full_prompt)
                             answer = response.text
                         except Exception as gemini_err:
-                            if "404" in str(gemini_err) or "not found" in str(gemini_err).lower():
-                                st.warning("⚠️ High-tier model restricted for your API Key. Falling back to the baseline model (Gemini 1.0 Pro)...")
-                                fallback_model = genai.GenerativeModel("gemini-1.0-pro")
-                                fallback_response = fallback_model.generate_content(full_prompt)
-                                answer = fallback_response.text
-                            else:
-                                raise gemini_err
+                            st.error(f"❌ Google API declined the request for '{native_model}'.")
+                            try:
+                                allowed = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+                                st.info("💡 Diagnostic: According to Google, your specific API Key only has access to these active models:\n" + "\n".join([f"- `{m}`" for m in allowed]))
+                            except Exception:
+                                pass
+                            st.error(f"Raw Error: {str(gemini_err)}")
+                            st.stop()
                     else:
                         completion_kwargs = {
                             "model": model_choice,
