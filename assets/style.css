@@ -1,166 +1,173 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Master Font Settings */
 html, body, p, h1, h2, h3, h4, h5, span, div, label, li, a {
-    font-family: 'Outfit', sans-serif;
-    color: #e2e8f0; /* Default text color light slate */
+    font-family: 'Inter', sans-serif !important;
+    color: #0f172a !important; /* Deep black/slate text for maximum readability */
 }
 
-/* Base App Background - Obsidian */
+/* Base App Background - Clean White */
 .stApp {
-    background-color: #050810 !important;
-    background-image: 
-        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%) !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
 }
 
 /* ===== PREMIUM SIDEBAR ===== */
 [data-testid="stSidebar"] {
-    background: rgba(11, 15, 25, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+    background: #f8fafc !important; /* Very light slate, almost white */
+    border-right: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
 }
 
 /* Sidebar Labels */
 [data-testid="stSidebar"] label p, 
 [data-testid="stSidebar"] .stMarkdown p {
-    color: #64748b !important;
+    color: #475569 !important;
     font-weight: 600 !important;
-    font-size: 0.8rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.85rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }
 
 /* Sidebar Inputs & Selectors */
 [data-testid="stSidebar"] div[data-baseweb="select"] > div,
 [data-testid="stSidebar"] input {
-    background: rgba(30, 41, 59, 0.5) !important;
-    border: 1px solid rgba(255,255,255,0.05) !important;
-    color: white !important;
-    border-radius: 12px !important;
-    transition: all 0.3s ease !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    transition: all 0.2s ease !important;
 }
 
 [data-testid="stSidebar"] div[data-baseweb="select"] > div:hover,
 [data-testid="stSidebar"] input:focus {
     border-color: #3b82f6 !important;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
 }
 
 /* ===== CHAT BUBBLES ===== */
 .stChatMessage {
     background: transparent !important;
     border: none !important;
-    box-shadow: none !important;
     padding: 1rem 0 !important;
-    margin-bottom: 1.5rem !important;
-    max-width: 100% !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: none !important;
 }
 
-/* The actual message container */
 [data-testid="stChatMessage"] .stMarkdown {
-    border-radius: 20px !important;
-    padding: 1.2rem 1.5rem !important;
-    font-size: 1.05rem !important;
+    border-radius: 12px !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
     line-height: 1.6 !important;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: none !important;
 }
 
 /* User Message Bubble */
 [data-testid="stChatMessage"][data-testrole="user"] .stMarkdown {
-    background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%) !important;
-    color: white !important;
+    background: #f1f5f9 !important; /* Light gray to distinguish from pure white background */
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
     border-bottom-right-radius: 4px !important;
     margin-left: auto;
 }
-
 [data-testid="stChatMessage"][data-testrole="user"] {
     flex-direction: row-reverse;
 }
-
 [data-testid="stChatMessage"][data-testrole="user"] [data-testid="chatAvatarIcon"] {
-    margin-left: 1rem;
+    margin-left: 1rem; 
     margin-right: 0 !important;
 }
 
 /* Assistant Message Bubble */
 [data-testid="stChatMessage"][data-testrole="assistant"] .stMarkdown {
-    background: rgba(30, 41, 59, 0.6) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    color: #e2e8f0 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
     border-bottom-left-radius: 4px !important;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03) !important;
 }
 
 /* Code Blocks in Chat */
 [data-testid="stChatMessage"] pre {
-    background: #0b0f19 !important;
-    border: 1px solid rgba(255,255,255,0.05) !important;
-    border-radius: 12px !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
 }
-
 [data-testid="stChatMessage"] code {
-    font-family: 'JetBrains Mono', monospace !important;
-    color: #60a5fa !important;
+    font-family: 'Menlo', 'Consolas', monospace !important;
+    color: #c026d3 !important; /* Highly readable fuchsia for inline code */
 }
 
-/* ===== CUSTOM AVATARS (REPLACING NATIVE ICONS) ===== */
+/* ===== CUSTOM AVATARS ===== */
 /* Hide native Streamlit icons completely */
 [data-testid="stChatMessage"] [data-testid="chatAvatarIcon"] > * {
     display: none !important;
 }
 
-/* Base Avatar Style */
 [data-testid="stChatMessage"] [data-testid="chatAvatarIcon"] {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 14px !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
     background-size: 55% !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
 }
 
-/* User Avatar (User Profile SVG) */
+/* User Avatar (Dark generic face icon) */
 [data-testid="stChatMessage"][data-testrole="user"] [data-testid="chatAvatarIcon"] {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E") !important;
-    background-color: rgba(37, 99, 235, 0.2) !important;
-    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+    background-color: #475569 !important;
+    border: none !important;
 }
 
-/* Assistant Avatar (Futuristic AI Node SVG) */
+/* Assistant Avatar (Clean geometric node) */
 [data-testid="stChatMessage"][data-testrole="assistant"] [data-testid="chatAvatarIcon"] {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a78bfa'%3E%3Cpath d='M12 2L2 12l10 10 10-10L12 2zm0 18l-8-8 8-8 8 8-8 8z'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23a78bfa'/%3E%3C/svg%3E") !important;
-    background-color: rgba(139, 92, 246, 0.1) !important;
-    border: 1px solid rgba(139, 92, 246, 0.4) !important;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 2 22 12 17 22 22 12 2'/%3E%3C/svg%3E") !important;
+    background-color: #2563eb !important;
+    border: none !important;
+    box-shadow: 0 4px 6px -1px rgba(37,99,235,0.2) !important;
 }
 
 /* ===== MAIN CHAT INPUT ===== */
 .stChatInputContainer {
-    background: rgba(15, 23, 42, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 20px !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
     padding: 2px 10px !important;
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5) !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05) !important;
 }
 
 .stChatInputContainer:focus-within {
-    border-color: #8b5cf6 !important;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 0 20px 40px -10px rgba(0,0,0,0.5) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
 }
 
 .stChatInputContainer textarea {
-    color: white !important;
+    color: #0f172a !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    transition: all 0.2s ease !important;
+}
+.stButton > button:hover {
+    border-color: #94a3b8 !important;
+    background: #f8fafc !important;
+    transform: translateY(-1px) !important;
 }
 
 /* File Uploader Fix */
 [data-testid="stFileUploader"] {
-    background: rgba(30, 41, 59, 0.3) !important;
-    border: 1px dashed rgba(255,255,255,0.1) !important;
-    border-radius: 16px !important;
+    background: #ffffff !important;
+    border: 1px dashed #cbd5e1 !important;
+    border-radius: 12px !important;
     padding: 10px !important;
 }
 
@@ -169,8 +176,8 @@ html, body, p, h1, h2, h3, h4, h5, span, div, label, li, a {
     content: none !important;
 }
 
-/* Loading animations */
+/* Spinner override */
 .stSpinner > div > div {
-    border-color: #8b5cf6 !important;
+    border-color: #2563eb !important;
     border-bottom-color: transparent !important;
 }
