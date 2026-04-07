@@ -153,23 +153,33 @@ if question := st.chat_input("Input your query..."):
                 # 2. Build Prompt
                 full_prompt = f"{SYSTEM_PROMPT}\n\nContext:\n{context}\n\nUser Question:\n{question}"
                 
-                # 3. Get Response using LiteLLM (Consistent temperature & full answers)
+                # 3. Get Response
                 with st.spinner(f"Thinking (via {provider})..."):
-                    completion_kwargs = {
-                        "model": model_choice,
-                        "messages": [{"role": "user", "content": full_prompt}],
-                        "api_key": api_key_input,
-                        "temperature": 0.5,
-                        "max_tokens": None
-                    }
-                    
-                    # Force Gemini to use the stable v1 API to prevent 404 v1beta errors
                     if provider == "Google Gemini":
-                        completion_kwargs["api_version"] = "v1"
-
-                    response = litellm.completion(**completion_kwargs)
-                    
-                    answer = response.choices[0].message.content
+                        genai.configure(api_key=api_key_input)
+                        native_model = model_choice.replace("gemini/", "")
+                        try:
+                            model = genai.GenerativeModel(native_model)
+                            response = model.generate_content(full_prompt)
+                            answer = response.text
+                        except Exception as gemini_err:
+                            if "404" in str(gemini_err) or "not found" in str(gemini_err).lower():
+                                st.warning("⚠️ High-tier model restricted for your API Key. Falling back to the baseline model (Gemini 1.0 Pro)...")
+                                fallback_model = genai.GenerativeModel("gemini-1.0-pro")
+                                fallback_response = fallback_model.generate_content(full_prompt)
+                                answer = fallback_response.text
+                            else:
+                                raise gemini_err
+                    else:
+                        completion_kwargs = {
+                            "model": model_choice,
+                            "messages": [{"role": "user", "content": full_prompt}],
+                            "api_key": api_key_input,
+                            "temperature": 0.5,
+                            "max_tokens": None
+                        }
+                        response = litellm.completion(**completion_kwargs)
+                        answer = response.choices[0].message.content
                 
                 st.markdown(answer)
                 st.session_state.messages.append({"role": "assistant", "content": answer})
