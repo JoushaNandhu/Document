@@ -5,6 +5,7 @@ from docx import Document
 import io
 import litellm
 import os
+import google.generativeai as genai
 
 # --- ASSET LOADING ---
 def load_css(file_path):
