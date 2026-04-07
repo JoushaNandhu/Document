@@ -1,148 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
-:root {
-    --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-    --sidebar-bg: #0f172a;
-    --accent: #818cf8;
-}
-
-/* Modern Font application that doesn't break Material Icons */
-html, body, p, h1, h2, h3, h4, h5, span, div:not(.stIcon):not(.material-symbols-rounded) {
+/* Master Font Settings */
+html, body, p, h1, h2, h3, h4, h5, span, div, label, li, a {
     font-family: 'Outfit', sans-serif;
+    color: #e2e8f0; /* Default text color light slate */
 }
 
+/* Base App Background - Obsidian */
 .stApp {
-    background: #f1f5f9;
+    background-color: #050810 !important;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 20%);
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%) !important;
 }
 
-/* Modern Sidebar with clearly visible labels */
+/* ===== PREMIUM SIDEBAR ===== */
 [data-testid="stSidebar"] {
-    background: var(--sidebar-bg) !important;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    background: rgba(11, 15, 25, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
 }
 
-[data-testid="stSidebar"] section {
-    padding-top: 2rem !important;
-}
-
-/* Make all labels in the sidebar white/visible */
+/* Sidebar Labels */
 [data-testid="stSidebar"] label p, 
-[data-testid="stSidebar"] .stMarkdown p,
-[data-testid="stSidebar"] .stSelectbox label,
-[data-testid="stSidebar"] .stTextInput label {
-    color: #f1f5f9 !important;
+[data-testid="stSidebar"] .stMarkdown p {
+    color: #64748b !important;
     font-weight: 600 !important;
-}
-
-[data-testid="stSidebar"] .stMarkdown h1 {
-    font-weight: 800;
-    letter-spacing: 0.05em;
+    font-size: 0.8rem !important;
     text-transform: uppercase;
-    font-size: 1.25rem !important;
-    color: #ffffff !important;
-    margin-bottom: 1.5rem !important;
+    letter-spacing: 0.05em;
 }
 
-/* Sidebar form elements spacing */
-[data-testid="stSidebar"] .stSelectbox, 
-[data-testid="stSidebar"] .stTextInput, 
-[data-testid="stSidebar"] .stFileUploader {
-    margin-bottom: 2rem !important;
+/* Sidebar Inputs & Selectors */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div,
+[data-testid="stSidebar"] input {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
 }
 
-/* Floating Chat Experience */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div:hover,
+[data-testid="stSidebar"] input:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* ===== CHAT BUBBLES ===== */
 .stChatMessage {
-    border-radius: 24px !important;
-    padding: 1.5rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 1rem 0 !important;
     margin-bottom: 1.5rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
-    max-width: 85% !important;
+    max-width: 100% !important;
+}
+
+/* The actual message container */
+[data-testid="stChatMessage"] .stMarkdown {
+    border-radius: 20px !important;
+    padding: 1.2rem 1.5rem !important;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* User Message Bubble */
+[data-testid="stChatMessage"][data-testrole="user"] .stMarkdown {
+    background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%) !important;
+    color: white !important;
+    border-bottom-right-radius: 4px !important;
+    margin-left: auto;
 }
 
 [data-testid="stChatMessage"][data-testrole="user"] {
-    background: var(--primary-gradient) !important;
-    margin-left: auto !important;
-    color: white !important;
-    box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3) !important;
+    flex-direction: row-reverse;
 }
 
-[data-testid="stChatMessage"][data-testrole="assistant"] {
-    background: white !important;
-    margin-right: auto !important;
-    border: 1px solid #e2e8f0 !important;
+[data-testid="stChatMessage"][data-testrole="user"] [data-testid="chatAvatarIcon"] {
+    margin-left: 1rem;
+    margin-right: 0 !important;
 }
 
-/* Premium Header */
-.main-header {
-    font-weight: 800;
-    font-size: 3.5rem !important;
-    background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.05em !important;
+/* Assistant Message Bubble */
+[data-testid="stChatMessage"][data-testrole="assistant"] .stMarkdown {
+    background: rgba(30, 41, 59, 0.6) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #e2e8f0 !important;
+    border-bottom-left-radius: 4px !important;
 }
 
-/* Enhanced Input Box */
-.stChatInputContainer {
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 28px !important;
-    background: white !important;
-    padding: 4px 12px !important;
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1) !important;
+/* Code Blocks in Chat */
+[data-testid="stChatMessage"] pre {
+    background: #0b0f19 !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 12px !important;
 }
 
-/* Buttons */
-.stButton > button {
+[data-testid="stChatMessage"] code {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: #60a5fa !important;
+}
+
+/* ===== CUSTOM AVATARS (REPLACING NATIVE ICONS) ===== */
+/* Hide native Streamlit icons completely */
+[data-testid="stChatMessage"] [data-testid="chatAvatarIcon"] > * {
+    display: none !important;
+}
+
+/* Base Avatar Style */
+[data-testid="stChatMessage"] [data-testid="chatAvatarIcon"] {
+    width: 44px !important;
+    height: 44px !important;
     border-radius: 14px !important;
-    height: 3rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.02em !important;
-    text-transform: uppercase !important;
-    font-size: 0.8rem !important;
-    background: white !important;
-    color: var(--sidebar-bg) !important;
-    border: 1px solid rgba(0,0,0,0.1) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background-size: 55% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
-.stButton > button:hover {
-    background: var(--primary-gradient) !important;
+/* User Avatar (User Profile SVG) */
+[data-testid="stChatMessage"][data-testrole="user"] [data-testid="chatAvatarIcon"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E") !important;
+    background-color: rgba(37, 99, 235, 0.2) !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Assistant Avatar (Futuristic AI Node SVG) */
+[data-testid="stChatMessage"][data-testrole="assistant"] [data-testid="chatAvatarIcon"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a78bfa'%3E%3Cpath d='M12 2L2 12l10 10 10-10L12 2zm0 18l-8-8 8-8 8 8-8 8z'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23a78bfa'/%3E%3C/svg%3E") !important;
+    background-color: rgba(139, 92, 246, 0.1) !important;
+    border: 1px solid rgba(139, 92, 246, 0.4) !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* ===== MAIN CHAT INPUT ===== */
+.stChatInputContainer {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 20px !important;
+    padding: 2px 10px !important;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5) !important;
+}
+
+.stChatInputContainer:focus-within {
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 0 20px 40px -10px rgba(0,0,0,0.5) !important;
+}
+
+.stChatInputContainer textarea {
     color: white !important;
-    border: none !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4) !important;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* File Uploader Fix */
+[data-testid="stFileUploader"] {
+    background: rgba(30, 41, 59, 0.3) !important;
+    border: 1px dashed rgba(255,255,255,0.1) !important;
+    border-radius: 16px !important;
+    padding: 10px !important;
 }
 
-/* DEFINITIVE FIX for 'uploadpload' text overlap */
 [data-testid="stFileUploader"] button div span::before {
     display: none !important;
     content: none !important;
 }
 
-[data-testid="stFileUploader"] section {
-    padding: 0 !important;
-    background: transparent !important;
-}
-
-[data-testid="stFileUploader"] section > label {
-    display: none !important;
-}
-
-
-
-.stStatusWidget {
-    border-radius: 16px !important;
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+/* Loading animations */
+.stSpinner > div > div {
+    border-color: #8b5cf6 !important;
+    border-bottom-color: transparent !important;
 }

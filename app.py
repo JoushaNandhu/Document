@@ -66,10 +66,17 @@ def get_context(uploaded_files):
 
 # --- SIDEBAR CONFIGURATION ---
 with st.sidebar:
-    # Stable AI Icon
-    st.image("https://cdn-icons-png.flaticon.com/512/4712/4712109.png", width=70) 
-    st.markdown("<h1 style='font-size: 1.2rem; color: white;'>SYSTEM CONFIG</h1>", unsafe_allow_html=True)
-    st.markdown("---")
+    # Modern Abstract Glowing Logo
+    st.markdown("""
+    <div style='display: flex; align-items: center; gap: 12px; margin-bottom: 25px;'>
+        <div style='width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6, #4f46e5); border-radius: 12px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); border: 1px solid rgba(255,255,255,0.2);'>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <span style='font-weight: 800; font-size: 1.25rem; letter-spacing: 0.1em; color: white;'>NEXUS UI</span>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<p style='font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px;'>System Configuration</p>", unsafe_allow_html=True)
 
     # Provider Selection
     provider = st.selectbox(
@@ -83,7 +90,7 @@ with st.sidebar:
     # Suggested Models based on Provider (Updated for Stability & Capability)
     model_options = {
         "Google Gemini": ["gemini/gemini-flash-latest", "gemini/gemini-2.5-flash", "gemini/gemini-2.5-pro", "gemini/gemini-pro-latest"],
-        "OpenAI": ["gpt-4o", "gpt-4-turbo", "gpt-3.5-turbo"],
+        "OpenAI": ["gpt-4o mini", "gpt-4-turbo", "gpt-3.5-turbo"],
         "Anthropic": ["anthropic/claude-3-5-sonnet-20240620", "anthropic/claude-3-opus-20240229", "anthropic/claude-3-haiku-20240307"],
         "Perplexity": ["perplexity/llama-3-sonar-large-32k-online", "perplexity/llama-3-sonar-small-32k-online"]
     }
