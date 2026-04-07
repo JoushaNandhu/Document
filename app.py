@@ -155,13 +155,19 @@ if question := st.chat_input("Input your query..."):
                 
                 # 3. Get Response using LiteLLM (Consistent temperature & full answers)
                 with st.spinner(f"Thinking (via {provider})..."):
-                    response = litellm.completion(
-                        model=model_choice,
-                        messages=[{"role": "user", "content": full_prompt}],
-                        api_key=api_key_input,
-                        temperature=0.5,
-                        max_tokens=None
-                    )
+                    completion_kwargs = {
+                        "model": model_choice,
+                        "messages": [{"role": "user", "content": full_prompt}],
+                        "api_key": api_key_input,
+                        "temperature": 0.5,
+                        "max_tokens": None
+                    }
+                    
+                    # Force Gemini to use the stable v1 API to prevent 404 v1beta errors
+                    if provider == "Google Gemini":
+                        completion_kwargs["api_version"] = "v1"
+
+                    response = litellm.completion(**completion_kwargs)
                     
                     answer = response.choices[0].message.content
                 
