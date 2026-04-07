@@ -6,8 +6,9 @@
     --accent: #818cf8;
 }
 
-* {
-    font-family: 'Outfit', sans-serif !important;
+/* Modern Font application that doesn't break Material Icons */
+html, body, p, h1, h2, h3, h4, h5, span, div:not(.stIcon):not(.material-symbols-rounded) {
+    font-family: 'Outfit', sans-serif;
 }
 
 .stApp {
